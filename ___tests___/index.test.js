@@ -11,3 +11,13 @@ describe('constructor', () => {
     });
 });
 
+describe('leavePort', () => {
+    const ship = new Ship('Liverpool');
+
+    it('can set sail', () => {
+        ship.leavePort();
+
+        expect(ship.startingPort).toBeFalsy();
+    });
+});
+
