@@ -1,38 +1,58 @@
 const Ship = require('../src/ship');
 const Port = require('../src/port');
+const Itinerary = require('../src/itinerary')
 
-describe('constructor', () => {
+
+describe('Ship constructor', () => {
     const portOne = new Port('Liverpool');
-    const ship = new Ship(portOne);
+    const itinerary = new Itinerary([portOne]);
+    const ship = new Ship(itinerary);
     
     it('returns an object', () => {
-        expect(new Ship()).toBeInstanceOf(Object);
+        expect(ship).toBeInstanceOf(Object);
     });
+
     it('has a starting port', () => {
         expect(ship.currentPort).toBe(portOne);
+    });
+
+    it('has a previous port property', () => {
+        expect(ship.previousPort).toBe(null)
     });
 });
 
 describe('leavePort', () => {
     const portOne = new Port('Liverpool');
-    const ship = new Ship(portOne);
+    const portTwo = new Port('Dublin');
+    const itinerary = new Itinerary([portOne, portTwo]);
+    const ship = new Ship(itinerary);
+    ship.leavePort();
 
     it('can set sail', () => {
-        ship.leavePort();
-
         expect(ship.currentPort).toBeFalsy();
     });
+
+    it('changes ships previous port', () => {
+        expect(ship.previousPort).toBe(portOne);
+    });
+
+    
 });
 
 describe('dock', () => {
-    const portOne = new Port('Dublin');
-    const ship = new Ship(portOne);
+    const portOne = new Port('Liverpool');
     const portTwo = new Port('Dublin');
+    const itinerary = new Itinerary([portOne, portTwo]);
+    const ship = new Ship(itinerary);
+    ship.leavePort();
+    ship.dock();
 
-    it('can dock at a port', () => {
-        ship.dock(portTwo);
-
+    it('can dock at another port', () => {
         expect(ship.currentPort).toBe(portTwo);
+    });
+
+    it('can\'t sail further than its itinerary', () => {
+        expect(() => ship.leavePort()).toThrowError('End of itinerary reached');
     });
 });
 
