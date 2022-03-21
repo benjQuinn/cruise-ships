@@ -19,6 +19,10 @@ describe('Ship constructor', () => {
     it('has a previous port property', () => {
         expect(ship.previousPort).toBe(null)
     });
+
+    it('gets added to port on instantiation', () => {
+        expect(portOne.ships).toStrictEqual([ship]);
+    })
 });
 
 describe('leavePort', () => {
@@ -30,6 +34,7 @@ describe('leavePort', () => {
 
     it('can set sail', () => {
         expect(ship.currentPort).toBeFalsy();
+        expect(portOne.ships).not.toContain(ship);
     });
 
     it('changes ships previous port', () => {
@@ -49,6 +54,7 @@ describe('dock', () => {
 
     it('can dock at another port', () => {
         expect(ship.currentPort).toBe(portTwo);
+        expect(portTwo.ships).toContain(ship);
     });
 
     it('can\'t sail further than its itinerary', () => {

@@ -2,7 +2,7 @@
   "name": "cruise-ships",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "ship.js",
   "scripts": {
     "test": "jest --verbose"
   },
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/benjQuinn/cruise-ships.git"
   },
-  "author": "",
+  "author": "Ben Quinn",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/benjQuinn/cruise-ships/issues"

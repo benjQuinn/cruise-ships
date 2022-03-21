@@ -20,30 +20,31 @@ describe('Port constructor', () => {
 
 describe('addShip', () => {
     const portOne = new Port('Liverpool');
-    const portTwo = new Port('Dublin');
-    const itinerary = new Itinerary([portOne, portTwo]);
-    const ship = new Ship(itinerary);
+    const shipOne = {};
+    const shipTwo = {};
 
     it('adds a Ship instance to its ships property', () => {
-        portOne.addShip(ship);
+        expect(portOne.ships.length).toBe(0);
+        portOne.addShip(shipOne);
         expect(portOne.ships.length).toBe(1);
-        expect(portOne.ships).toStrictEqual([ship]);
+        expect(portOne.ships).toStrictEqual([shipOne]);
+        portOne.addShip(shipTwo);
+        expect(portOne.ships.length).toBe(2);
+        expect(portOne.ships).toStrictEqual([shipOne, shipTwo])
     });
 });
 
 describe('removeShip', () => {
     const portOne = new Port('Liverpool');
-    const portTwo = new Port('Dublin');
-    const itinerary = new Itinerary([portOne, portTwo]);
-    const ship = new Ship(itinerary);
-    const shipTwo = new Ship(itinerary);
-    const shipThree = new Ship(itinerary);
+    const shipOne = {};
+    const shipTwo = {};
+    const shipThree = {};
 
     // mocks would be useful here....
     it('removes a Ship instance from its ships property', () => {
-        portOne.ships = [ship, shipTwo, shipThree]
+        portOne.ships = [shipOne, shipTwo, shipThree]
         portOne.removeShip(shipTwo)
         expect(portOne.ships.length).toBe(2);
-        expect(portOne.ships).toStrictEqual([ship, shipThree]);
+        expect(portOne.ships).toStrictEqual([shipOne, shipThree]);
     });
 });
