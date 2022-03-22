@@ -7,9 +7,9 @@ let shipThree;
 
 beforeEach(() => {
     portOne = new Port('Liverpool');
-    shipOne = {};
-    shipTwo = {};
-    shipThree = {};
+    shipOne = jest.fn();
+    shipTwo = jest.fn();
+    shipThree = jest.fn();
 });
 
 describe('Port constructor', () => {
