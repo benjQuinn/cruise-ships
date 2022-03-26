@@ -21,15 +21,23 @@
             portsElement.style.width = "0px";
 
             ports.forEach(element => {
-                const newDiv = document.createElement("div");
-                newDiv.setAttribute("class", "port");
-                newDiv.dataset.portName = element.name;
-                newDiv.dataset.portIndex = `${ports.indexOf(element)}`
-                portsElement.appendChild(newDiv);
+                const newPort = document.createElement("div");
+                newPort.setAttribute("class", "port");
+                newPort.dataset.portName = element.name;
+                newPort.dataset.portIndex = `${ports.indexOf(element)}`
+                portsElement.appendChild(newPort);
 
                 const portsElementWidth = parseInt(portsElement.style.width, 10);
                 portsElement.style.width = `${portsElementWidth + 256}px`;
             });
+        }
+
+        renderShip(ship) {
+            const shipsPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+            const portElement = document.querySelector(`[data-port-index='${shipsPortIndex}']`);
+            const newShip = document.querySelector("#ship");
+            newShip.style.top = `${portElement.offsetTop + 32}px`;
+            newShip.style.left = `${portElement.offsetLeft - 32}px`;
         }
     }
     
