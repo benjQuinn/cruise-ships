@@ -12,7 +12,24 @@
             window.setInterval(() => {
                 document.querySelector("#viewport").style.backgroundImage = `url("${backgrounds[backgroundIndex % backgrounds.length]}")`;
                 backgroundIndex += 1;
-            }, 1000);
+            }, 500);
+        }
+
+        renderPorts(ports) {
+            const portsElement = document.querySelector("#ports");
+            
+            portsElement.style.width = "0px";
+
+            ports.forEach(element => {
+                const newDiv = document.createElement("div");
+                newDiv.setAttribute("class", "port");
+                newDiv.dataset.portName = element.name;
+                newDiv.dataset.portIndex = `${ports.indexOf(element)}`
+                portsElement.appendChild(newDiv);
+
+                const portsElementWidth = parseInt(portsElement.style.width, 10);
+                portsElement.style.width = `${portsElementWidth + 256}px`;
+            });
         }
     }
     
