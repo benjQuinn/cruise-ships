@@ -53,19 +53,37 @@
             const nextPortElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
 
             if(!nextPortElement) {
-                return alert("End of the line!");
+                return this.renderMessage("End of the line!");
             }
-            
+
+            this.renderMessage(`Now departing ${ship.currentPort.name}...`);
+
             const shipElement = document.querySelector("#ship");
             const sailInterval = setInterval(() => {
                 const shipLeft = parseInt(shipElement.style.left, 10);
-                if(shipLeft === (nextPortElement.offsetLeft - 32)) {
+                if (shipLeft === (nextPortElement.offsetLeft - 32)) {
                     ship.leavePort();
                     ship.dock();
+                    this.renderMessage(`Now docked at ${ship.currentPort.name}`)
                     clearInterval(sailInterval);
                 }
                 shipElement.style.left = `${shipLeft + 1}px`
             }, 20);
+        }
+
+        renderMessage(message) {
+            const viewportContainer = document.querySelector("#viewport");
+            const messageBox = document.createElement("div");
+            const p = document.createElement("p");
+            
+            p.innerHTML = message;
+            messageBox.id = "message";
+            messageBox.appendChild(p);
+            viewportContainer.appendChild(messageBox);
+            
+            setTimeout(() => {
+                viewportContainer.removeChild(messageBox);
+            }, 2000);
         }
     }
     

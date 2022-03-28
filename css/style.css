@@ -20,6 +20,7 @@ body {
     position: relative;
     overflow-x: auto;
     background-image: url("../images/water0.png");
+    scroll-behavior: smooth;
 }
 
 #ports {
@@ -44,8 +45,8 @@ body {
 #setsail {
     position: absolute;
     padding: 7px 15px;
-    width: 100%;
-    bottom: 5px;
+    width: 640px;
+    bottom: 30%;
     background-color: #fb3640;
     border-bottom: 4px solid #d8040f;
     border-radius: 40px 40px 40px 40px;
@@ -57,4 +58,17 @@ body {
     padding-top: 12px;
     background-color: #d8040f;
     border-bottom-width: 0;
+}
+
+#message {
+    position: absolute;
+    width: 25%;
+    height: 28%;
+    top: 5px;
+    left: 5px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding-left: 15px;
+    font-family: modeseven, monospace, cursive;
 }
