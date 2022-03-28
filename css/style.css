@@ -45,7 +45,7 @@ body {
     position: absolute;
     padding: 7px 15px;
     width: 100%;
-    bottom: 0px;
+    bottom: 5px;
     background-color: #fb3640;
     border-bottom: 4px solid #d8040f;
     border-radius: 40px 40px 40px 40px;
