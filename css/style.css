@@ -1,3 +1,8 @@
+@font-face {
+    font-family: modeseven;
+    src: url("../fonts/modeseven.ttf")
+}
+
 html { 
     height: 100%; 
 }
@@ -34,4 +39,22 @@ body {
     width: 128px;
     height: 64px;
     position: absolute;
+}
+
+#setsail {
+    position: absolute;
+    padding: 7px 15px;
+    width: 100%;
+    bottom: 0px;
+    background-color: #fb3640;
+    border-bottom: 4px solid #d8040f;
+    border-radius: 40px 40px 40px 40px;
+    color: white;
+    font-family: modeseven, monospace, cursive;
+}
+
+#setsail:focus {
+    padding-top: 12px;
+    background-color: #d8040f;
+    border-bottom-width: 0;
 }

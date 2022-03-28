@@ -20,6 +20,7 @@
         <div id="ship">
 
         </div>
+        <button type="button" id="setsail">Set Sail!</button>
     </div>
     
 
@@ -27,16 +28,16 @@
 
 
     <script>
-        const controller = new Controller();
         const portOne = new Port('Liverpool');
         const portTwo = new Port('Belfast');
         const portThree = new Port('Miami');
         const portFour = new Port('Suez')
         const itinerary = new Itinerary([portOne, portTwo, portThree, portFour]);
         const ship = new Ship(itinerary);
+        const controller = new Controller(ship);
 
         controller.renderPorts(itinerary.ports);
-        controller.renderShip(ship);
+        controller.renderShip();
 
     </script>
     
