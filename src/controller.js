@@ -63,26 +63,28 @@
                 const shipLeft = parseInt(shipElement.style.left, 10);
                 if (shipLeft === (nextPortElement.offsetLeft - 32)) {
                     ship.leavePort();
+                    // document.querySelector("#viewport").scrollLeft += 100;
                     ship.dock();
                     this.renderMessage(`Now docked at ${ship.currentPort.name}`)
                     clearInterval(sailInterval);
                 }
                 shipElement.style.left = `${shipLeft + 1}px`
+                document.querySelector("#viewport").scrollLeft += 1;
             }, 20);
         }
 
         renderMessage(message) {
-            const viewportContainer = document.querySelector("#viewport");
+            const bodyContainer = document.querySelector("#body");
             const messageBox = document.createElement("div");
             const p = document.createElement("p");
             
             p.innerHTML = message;
             messageBox.id = "message";
             messageBox.appendChild(p);
-            viewportContainer.appendChild(messageBox);
+            bodyContainer.appendChild(messageBox);
             
             setTimeout(() => {
-                viewportContainer.removeChild(messageBox);
+                bodyContainer.removeChild(messageBox);
             }, 2000);
         }
     }

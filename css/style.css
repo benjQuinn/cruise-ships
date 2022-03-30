@@ -8,6 +8,7 @@ html {
 }
 
 body { 
+    background-color: black;
     height: 100%; 
     display: flex;
     justify-content: center;
@@ -15,7 +16,7 @@ body {
 }
 
 #viewport {
-    width: 640px;
+    width: 70%;
     height: 256px;
     position: relative;
     overflow-x: auto;
@@ -46,7 +47,7 @@ body {
     position: absolute;
     padding: 7px 15px;
     width: 640px;
-    bottom: 30%;
+    bottom: 25%;
     background-color: #fb3640;
     border-bottom: 4px solid #d8040f;
     border-radius: 40px 40px 40px 40px;
@@ -63,12 +64,13 @@ body {
 #message {
     position: absolute;
     width: 25%;
-    height: 28%;
-    top: 5px;
-    left: 5px;
+    height: 10%;
+    top: 19%;
+    left: 15%;
     background-color: white;
     border: 2px solid black;
     border-radius: 15px;
     padding-left: 15px;
+    border: 5px solid #fb3640;
     font-family: modeseven, monospace, cursive;
 }
