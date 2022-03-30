@@ -55,7 +55,7 @@
             if(!nextPortElement) {
                 return this.renderMessage("End of the line!");
             }
-
+            
             this.renderMessage(`Now departing ${ship.currentPort.name}...`);
 
             const shipElement = document.querySelector("#ship");
@@ -63,8 +63,9 @@
                 const shipLeft = parseInt(shipElement.style.left, 10);
                 if (shipLeft === (nextPortElement.offsetLeft - 32)) {
                     ship.leavePort();
-                    // document.querySelector("#viewport").scrollLeft += 100;
                     ship.dock();
+                    // this.renderHUD(`Current Port: ${ship.currentPort.name}`, `Next Port: ${ship.itinerary.ports[nextPortIndex].name}`);
+                    this.renderHUD();
                     this.renderMessage(`Now docked at ${ship.currentPort.name}`)
                     clearInterval(sailInterval);
                 }
@@ -87,6 +88,34 @@
                 bodyContainer.removeChild(messageBox);
             }, 2000);
         }
+
+        renderHUD() {
+            const bodyContainer = document.querySelector("#body");
+            const hud = document.createElement("div");
+            const pTop = document.createElement("p");
+            const pBottom = document.createElement("p");
+            const nextPortIndex = ship.itinerary.ports.indexOf(ship.currentPort) + 1;
+
+            pTop.innerHTML = `Current Port: ${ship.currentPort.name}`;
+            pBottom.innerHTML = `Next Port: ${ship.itinerary.ports[nextPortIndex].name}`;
+            hud.id = "hud"
+            hud.appendChild(pTop).appendChild(pBottom);
+            bodyContainer.appendChild(hud)
+
+            setTimeout(() => {
+                bodyContainer.removeChild(hud);
+            }, 4000);
+        }
+        // renderHUD(currentPort, nextPort) {
+        //     const pTop = document.querySelector("#pTop");
+        //     const pBottom = document.querySelector("#pBottom");
+        //     const nextPortIndex = ship.itinerary.ports.indexOf(ship.currentPort) + 1;
+
+        //     pTop.innerHTML = currentPort;
+        //     pBottom.innerHTML = nextPort;
+
+        // }
+
     }
     
     if (typeof module !== "undefined" && module.exports) {

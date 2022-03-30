@@ -14,6 +14,10 @@
 </head>
 <body id="body">
     <!-- <div id="message"></div> -->
+    <!-- <div id="hud">
+        <p id="pTop">Current Port: </p>
+        <p id="pBottom">Next port: </p>
+    </div> -->
     <div id="viewport">
         <div id="ports">
 
@@ -36,10 +40,12 @@
         const itinerary = new Itinerary([portOne, portTwo, portThree, portFour]);
         const ship = new Ship(itinerary);
         const controller = new Controller(ship);
+        const nextPortIndex = ship.itinerary.ports.indexOf(ship.currentPort) + 1;
 
         controller.renderPorts(itinerary.ports);
         controller.renderShip();
-
+        // controller.renderHUD(`Current Port: ${ship.currentPort.name}`, `Next Port: ${ship.itinerary.ports[nextPortIndex + 1].name}`);
+        controller.renderHUD();
     </script>
     
 </body>

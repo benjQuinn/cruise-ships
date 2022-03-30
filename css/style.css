@@ -74,3 +74,23 @@ body {
     border: 5px solid #fb3640;
     font-family: modeseven, monospace, cursive;
 }
+
+#hud {
+    display: grid;
+    /* flex-wrap: wrap; */
+    justify-content: flex-end; 
+    top: 2%;
+    right: 2%;
+    position: absolute;
+    width: 30%;
+    height: 10%;
+    color: white;
+    font-size: 1.5em;
+    font-family: modeseven, monospace, cursive;
+}
+
+#hud p {
+    
+    margin: 0px;
+    display: block;
+}
