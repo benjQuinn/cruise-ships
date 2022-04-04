@@ -3,6 +3,7 @@
         constructor(ship) {
             this.ship = ship;
             this.initialiseSea();
+            this.initialiseHUD();
 
             const setSailButton = document.querySelector("#setsail");
             setSailButton.addEventListener('click', () => {
@@ -19,6 +20,14 @@
                 document.querySelector("#viewport").style.backgroundImage = `url("${backgrounds[backgroundIndex % backgrounds.length]}")`;
                 backgroundIndex += 1;
             }, 500);
+        }
+
+        initialiseHUD() {
+            const hud = document.querySelector("#hud");
+            const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+            const nextPortIndex = currentPortIndex + 1;
+
+            hud.innerHTML = `Current Port: ${ship.currentPort.name} <br/> Next Port: ${ship.itinerary.ports[nextPortIndex].name}`;
         }
 
         renderPorts(ports) {
@@ -49,26 +58,35 @@
 
         setSail() {
             const ship = this.ship;
-            const nextPortIndex = ship.itinerary.ports.indexOf(ship.currentPort) + 1;
+            const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+            const nextPortIndex = currentPortIndex + 1;
             const nextPortElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
 
             if(!nextPortElement) {
                 return this.renderMessage("End of the line!");
             }
             
+            this.updateHUD(`Sailing...`);
             this.renderMessage(`Now departing ${ship.currentPort.name}...`);
 
             const shipElement = document.querySelector("#ship");
             const sailInterval = setInterval(() => {
                 const shipLeft = parseInt(shipElement.style.left, 10);
                 if (shipLeft === (nextPortElement.offsetLeft - 32)) {
+
                     ship.leavePort();
                     ship.dock();
-                    // this.renderHUD(`Current Port: ${ship.currentPort.name}`, `Next Port: ${ship.itinerary.ports[nextPortIndex].name}`);
-                    this.renderHUD();
-                    this.renderMessage(`Now docked at ${ship.currentPort.name}`)
+
+                    if (currentPortIndex === ship.itinerary.ports.length - 2) {
+                        return this.updateHUD(`Current Port: ${ship.currentPort.name}`);
+                    } else {
+                         this.updateHUD(`Current Port: ${ship.currentPort.name} <br/> Next Port: ${ship.itinerary.ports[nextPortIndex + 1].name}`);
+                    };
+                    
+                    this.renderMessage(`Now docked at ${ship.currentPort.name}`);
                     clearInterval(sailInterval);
                 }
+
                 shipElement.style.left = `${shipLeft + 1}px`
                 document.querySelector("#viewport").scrollLeft += 1;
             }, 20);
@@ -89,32 +107,11 @@
             }, 2000);
         }
 
-        renderHUD() {
-            const bodyContainer = document.querySelector("#body");
-            const hud = document.createElement("div");
-            const pTop = document.createElement("p");
-            const pBottom = document.createElement("p");
-            const nextPortIndex = ship.itinerary.ports.indexOf(ship.currentPort) + 1;
+        updateHUD(message) {
+            const hud = document.querySelector("#hud");
 
-            pTop.innerHTML = `Current Port: ${ship.currentPort.name}`;
-            pBottom.innerHTML = `Next Port: ${ship.itinerary.ports[nextPortIndex].name}`;
-            hud.id = "hud"
-            hud.appendChild(pTop).appendChild(pBottom);
-            bodyContainer.appendChild(hud)
-
-            setTimeout(() => {
-                bodyContainer.removeChild(hud);
-            }, 4000);
+            hud.innerHTML = message;
         }
-        // renderHUD(currentPort, nextPort) {
-        //     const pTop = document.querySelector("#pTop");
-        //     const pBottom = document.querySelector("#pBottom");
-        //     const nextPortIndex = ship.itinerary.ports.indexOf(ship.currentPort) + 1;
-
-        //     pTop.innerHTML = currentPort;
-        //     pBottom.innerHTML = nextPort;
-
-        // }
 
     }
     
