@@ -7,35 +7,38 @@
     <title>Cruise Ships</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="./src/controller.js"></script>
-    <script src="./src/port.js"></script>
-    <script src="./src/itinerary.js"></script>
-    <script src="./src/ship.js"></script>
+
 </head>
 <body id="body">
+    <form id="form">
+        <label for="port-name">Add Port</label>
+        <br>
+        <input type="text" id="port-name" name="port-name" placeholder="E.g. Liverpool" required>
+        
+        <button type="submit" id="submit">Add</button>
+    </form>
     <div id="hud">
 
     </div>
     <div id="viewport">
-        <div id="ports">
-
-        </div>
-        <div id="ship">
-
-        </div>
+        <div id="ports"></div>
+        <div id="ship"></div>
     </div>
     
     <button type="button" id="setsail">Set Sail!</button>
 
-
-
+    <script src="./src/controller.js"></script>
+    <script src="./src/port.js"></script>
+    <script src="./src/itinerary.js"></script>
+    <script src="./src/ship.js"></script>
 
     <script>
-        const portOne = new Port('Liverpool');
-        const portTwo = new Port('Belfast');
-        const portThree = new Port('Miami');
-        const portFour = new Port('Suez')
-        const itinerary = new Itinerary([portOne, portTwo, portThree, portFour]);
+        const itinerary = new Itinerary([
+            new Port('Liverpool'),
+            new Port('Belfast'),
+            new Port('Tangier'),
+            new Port('Dover'),
+            new Port('Amsterdam')]);
         const ship = new Ship(itinerary);
         const controller = new Controller(ship);
 
@@ -43,6 +46,6 @@
         controller.renderShip();
         
     </script>
-    
+    <script src="./src/form.js"></script>
 </body>
 </html>

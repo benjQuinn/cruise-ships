@@ -89,8 +89,31 @@ body {
     font-family: modeseven, monospace, cursive;
 }
 
-#hud p {
-    
-    margin: 0px;
-    display: block;
+#form {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    font-family: modeseven, monospace, cursive;
+    color: white;
+    font-size: 1.2em;
+    width: min-content;
+    row-gap: 5px;
 }
+
+button {
+    color: white;
+    padding: 5px 5px;
+    width: 250px;
+    background-color: #fb3640;
+    border-bottom: 4px solid #d8040f;
+    border-radius: 40px 40px 40px 40px;
+}
+
+button:focus {
+    padding-top: 12px;
+    background-color: #d8040f;
+    border-bottom-width: 0;
+}
+

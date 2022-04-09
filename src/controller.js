@@ -40,11 +40,26 @@
                 newPort.setAttribute("class", "port");
                 newPort.dataset.portName = element.name;
                 newPort.dataset.portIndex = `${ports.indexOf(element)}`
+
                 portsElement.appendChild(newPort);
 
                 const portsElementWidth = parseInt(portsElement.style.width, 10);
                 portsElement.style.width = `${portsElementWidth + 256}px`;
             });
+        }
+
+        renderUserPort(port) {
+            const portsElement = document.querySelector("#ports");
+            const newPort = document.createElement("div");
+
+            newPort.setAttribute("class", "port");
+                newPort.dataset.portName = port.name;
+                newPort.dataset.portIndex = `${this.ship.itinerary.ports.length - 1}`;
+
+                portsElement.appendChild(newPort);
+
+                const portsElementWidth = parseInt(portsElement.style.width, 10);
+                portsElement.style.width = `${portsElementWidth + 256}px`;
         }
 
         renderShip() {
@@ -54,6 +69,21 @@
             const shipElement = document.querySelector("#ship");
             shipElement.style.top = `${portElement.offsetTop + 32}px`;
             shipElement.style.left = `${portElement.offsetLeft - 32}px`;
+        }
+
+        renderMessage(message) {
+            const bodyContainer = document.querySelector("#body");
+            const messageBox = document.createElement("div");
+            const p = document.createElement("p");
+            
+            p.innerHTML = message;
+            messageBox.id = "message";
+            messageBox.appendChild(p);
+            bodyContainer.appendChild(messageBox);
+            
+            setTimeout(() => {
+                bodyContainer.removeChild(messageBox);
+            }, 2000);
         }
 
         setSail() {
@@ -90,21 +120,6 @@
                 shipElement.style.left = `${shipLeft + 1}px`
                 document.querySelector("#viewport").scrollLeft += 1;
             }, 20);
-        }
-
-        renderMessage(message) {
-            const bodyContainer = document.querySelector("#body");
-            const messageBox = document.createElement("div");
-            const p = document.createElement("p");
-            
-            p.innerHTML = message;
-            messageBox.id = "message";
-            messageBox.appendChild(p);
-            bodyContainer.appendChild(messageBox);
-            
-            setTimeout(() => {
-                bodyContainer.removeChild(messageBox);
-            }, 2000);
         }
 
         updateHUD(message) {
