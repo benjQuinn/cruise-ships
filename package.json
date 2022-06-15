@@ -18,5 +18,8 @@
   "homepage": "https://github.com/benjQuinn/cruise-ships#readme",
   "devDependencies": {
     "jest": "^27.5.1"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
   }
 }

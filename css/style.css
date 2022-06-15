@@ -1,0 +1,119 @@
+@font-face {
+    font-family: modeseven;
+    src: url("../fonts/modeseven.ttf")
+}
+
+html { 
+    height: 100%; 
+}
+
+body { 
+    background-color: black;
+    height: 100%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewport {
+    width: 70%;
+    height: 256px;
+    position: relative;
+    overflow-x: auto;
+    background-image: url("../images/water0.png");
+    scroll-behavior: smooth;
+}
+
+#ports {
+    margin-top: 96px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#ports > .port {
+    width: 64px;
+    height: 32px;
+    background-image: url("../images/port.png");
+}
+
+#ship {
+    background-image: url("../images/ship.png");
+    width: 128px;
+    height: 64px;
+    position: absolute;
+}
+
+#setsail {
+    position: absolute;
+    padding: 7px 15px;
+    width: 640px;
+    bottom: 25%;
+    background-color: #fb3640;
+    border-bottom: 4px solid #d8040f;
+    border-radius: 40px 40px 40px 40px;
+    color: white;
+    font-family: modeseven, monospace, cursive;
+}
+
+#setsail:focus {
+    padding-top: 12px;
+    background-color: #d8040f;
+    border-bottom-width: 0;
+}
+
+#message {
+    position: absolute;
+    width: 25%;
+    height: 10%;
+    top: 19%;
+    left: 15%;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding-left: 15px;
+    border: 5px solid #fb3640;
+    font-family: modeseven, monospace, cursive;
+}
+
+#hud {
+    display: grid;
+    /* flex-wrap: wrap; */
+    justify-content: flex-end; 
+    top: 2%;
+    right: 2%;
+    position: absolute;
+    width: 30%;
+    height: 10%;
+    color: white;
+    font-size: 1.5em;
+    font-family: modeseven, monospace, cursive;
+}
+
+#form {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 2%;
+    left: 2%;
+    font-family: modeseven, monospace, cursive;
+    color: white;
+    font-size: 1.2em;
+    width: min-content;
+    row-gap: 5px;
+}
+
+button {
+    color: white;
+    padding: 5px 5px;
+    width: 250px;
+    background-color: #fb3640;
+    border-bottom: 4px solid #d8040f;
+    border-radius: 40px 40px 40px 40px;
+}
+
+button:focus {
+    padding-top: 12px;
+    background-color: #d8040f;
+    border-bottom-width: 0;
+}
+
