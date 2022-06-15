@@ -24,6 +24,10 @@ Clone this repo and open `index.html` in the browser.
 
 Add ports by filling in the form and start your journey by pressing the **Set Sail!** button to leave the current port!
 
+### Media
+
+![Cruise Ships screenshot](./readme-media/cruise-ships-screenshot.png)
+
 ### Improvements
 
 - [x] Scroll window with ship movement
